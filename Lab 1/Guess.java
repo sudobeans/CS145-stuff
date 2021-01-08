@@ -15,8 +15,8 @@ public class Guess {
         String answer;
         boolean playAgain = true;
         int totalGuesses = 0;
-        int guessesTaken;
         int totalGames = 0;
+        int guessesTaken;
         int guessesInBestGame = 10000;
 
         introGame();
@@ -27,6 +27,10 @@ public class Guess {
             guessesTaken = playGame(console);
             totalGuesses += guessesTaken;
             totalGames++;
+
+            if (totalGames <= 1) { // Makes the first game the best game
+                guessesInBestGame = guessesTaken;
+            }
             if (guessesInBestGame > guessesTaken) { // Updates guessesInBestGame
                 guessesInBestGame = guessesTaken;
             }
@@ -60,8 +64,8 @@ public class Guess {
     // Runs the game, then returns the number of guesses the user took.
     public static int playGame(Scanner console) {
         Random r = new Random();
-        int thinkingNumber = r.nextInt(MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER;
-        System.out.printf("I'm thinking of a number between %d and %d...\n", MIN_NUMBER, MAX_NUMBER);
+        int thinkingNumber = r.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
+        System.out.printf("I'm thinking of a number between " + MIN_NUMBER + " and " + MAX_NUMBER + "...");
         int guesses = 0;
         int guess = MIN_NUMBER - 1; // Initializes guess
         
@@ -111,11 +115,10 @@ public class Guess {
         char firstChar;
         // This if statement is needed so the program doesn't break if answer is empty
         if (answer.equals("")) {
-            firstChar = ' ';
-        } else {
-            firstChar = answer.charAt(0);
-            firstChar = Character.toLowerCase(firstChar);
+            return false;
         }
+        firstChar = answer.charAt(0);
+        firstChar = Character.toLowerCase(firstChar);
         return (firstChar == 'y');
     }
     
