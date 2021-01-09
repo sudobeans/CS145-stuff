@@ -10,6 +10,7 @@ import java.util.*;
 public class Guess {
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 100;
+
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         String answer;
@@ -34,7 +35,7 @@ public class Guess {
             if (guessesInBestGame > guessesTaken) { // Updates guessesInBestGame
                 guessesInBestGame = guessesTaken;
             }
-            
+
 
             // Asks the user if they want to play again
             System.out.print("Do you want to play again? ");
@@ -43,7 +44,7 @@ public class Guess {
 
             System.out.println();
         }
-        
+
         // Displays the user's results
         displayResults(totalGuesses, totalGames, guessesInBestGame);
     }
@@ -51,12 +52,12 @@ public class Guess {
     // Introduces the game
     public static void introGame() {
         System.out.println(
-        "This program allows you to play a guessing game.\n" +
-        "I will think of a number between " + MIN_NUMBER + " and \n" +
-        MAX_NUMBER + " and will allow you to guess until\n" +
-        "you get it. For each guess, I will tell you\n" +
-        "whether the right answer is higher or lower\n" +
-        "than your guess."
+                "This program allows you to play a guessing game.\n" +
+                        "I will think of a number between " + MIN_NUMBER + " and \n" +
+                        MAX_NUMBER + " and will allow you to guess until\n" +
+                        "you get it. For each guess, I will tell you\n" +
+                        "whether the right answer is higher or lower\n" +
+                        "than your guess."
         );
     }
 
@@ -68,7 +69,7 @@ public class Guess {
         System.out.printf("I'm thinking of a number between " + MIN_NUMBER + " and " + MAX_NUMBER + "...");
         int guesses = 0;
         int guess = MIN_NUMBER - 1; // Initializes guess
-        
+
         // Asks the user for their guess until they guess right
         while (guess != thinkingNumber) {
             System.out.print("Your guess? ");
@@ -83,9 +84,9 @@ public class Guess {
                 System.out.println("It's lower.");
             }
         }
-        
+
         return guesses;
-        
+
     }
 
     // Takes some number of guesses, then prints a message telling 
@@ -96,35 +97,37 @@ public class Guess {
         } else {
             System.out.println("You got it right in " + guesses + " guesses");
         }
-    } 
+    }
 
     // Takes the users guesses, games, and best game, then displays the user's games' stats.
     public static void displayResults(int guesses, int games, int bestGame) {
         float guessesPerGame = (float) guesses / games;
         System.out.printf(
-            "Overall results:\n" +
-            "\ttotal games    = %d\n" + 
-            "\ttotal guesses  = %d\n" + 
-            "\tguesses/game   = %.1f\n" + 
-            "\tbest game      = %d\n",
-            games, guesses, guessesPerGame, bestGame);
+                "Overall results:\n" +
+                        "\ttotal games    = %d\n" +
+                        "\ttotal guesses  = %d\n" +
+                        "\tguesses/game   = %.1f\n" +
+                        "\tbest game      = %d\n",
+                games, guesses, guessesPerGame, bestGame);
     }
 
     // returns true if the first character of answer is y, otherwise returns false.
     public static boolean getTruth(String answer) {
         char firstChar;
         // This if statement is needed so the program doesn't break if answer is empty
-        while (firstChar != 'y'){
+        while (firstChar != 'y') {
             if (answer.equals("")) {
-            return false;
-            }
-            if(firstChar == 'n'){
                 return false;
-            }else{
+            }
+            if (firstChar == 'n') {
+                return false;
+            } else {
                 System.out.println("Please enter a valid command");
                 answer = console.nextLine();
-                answer = answer.toLowerCase; 
+                answer = answer.toLowerCase;
             }
 
-        return (firstChar == 'y');
+            return (firstChar == 'y');
+        }
+    }
 }
