@@ -1,4 +1,6 @@
 // Schuyler Duryee
+// Judd Morse
+// Alyce Harlan
 // 01/07/2020
 // CS 145
 // Lab #1
@@ -36,11 +38,10 @@ public class Guess {
                 guessesInBestGame = guessesTaken;
             }
 
-
             // Asks the user if they want to play again
             System.out.print("Do you want to play again? ");
             answer = console.nextLine();
-            playAgain = getTruth(console, answer);
+            playAgain = getTruth(answer);
 
             System.out.println();
         }
@@ -78,15 +79,15 @@ public class Guess {
 
             if (guess == thinkingNumber) {
                 displayGuessesTaken(guesses);
-            } else if (guess < thinkingNumber) {
+            } else if (guess < thinkingNumber && guess > MIN_NUMBER) {
                 System.out.println("It's higher.");
-            } else { // guess > thinkingNumber
+            } else if (guess > thinkingNumber && guess < MAX_NUMBER) {
                 System.out.println("It's lower.");
+            } else {
+                System.out.println("Invalid choice, please select a number between " + MAX_NUMBER + " and " + MIN_NUMBER + ".");
             }
         }
-
         return guesses;
-
     }
 
     // Takes some number of guesses, then prints a message telling 
@@ -112,10 +113,8 @@ public class Guess {
     }
 
     // returns true if the first character of answer is y, otherwise returns false.
-    public static boolean getTruth(Scanner console, String answer) {
+    public static boolean getTruth(String answer) {
         char firstChar;
-        firstChar = answer.charAt(0);
-        firstChar = Character.toLowerCase(firstChar);
         // This if statement is needed so the program doesn't break if answer is empty
         while (firstChar != 'y') {
             if (answer.equals("")) {
@@ -124,10 +123,12 @@ public class Guess {
             if (firstChar == 'n') {
                 return false;
             } else {
-                return false; 
+                System.out.println("Please enter a valid command");
+                answer = console.nextLine();
+                answer = answer.toLowerCase;
             }
-  
+
+            return (firstChar == 'y');
         }
-        return (firstChar == 'y');
     }
 }
