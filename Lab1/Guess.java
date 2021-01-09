@@ -84,7 +84,8 @@ public class Guess {
             } else if (guess > thinkingNumber && guess < MAX_NUMBER) {
                 System.out.println("It's lower.");
             } else {
-                System.out.println("Invalid choice, please select a number between " + MAX_NUMBER + " and " + MIN_NUMBER + ".");
+                System.out.println("Invalid choice, please select a number between " 
+                + MAX_NUMBER + " and " + MIN_NUMBER + ".");
             }
         }
         return guesses;
