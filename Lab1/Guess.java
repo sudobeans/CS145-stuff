@@ -15,7 +15,6 @@ public class Guess {
 
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
-        String answer;
         boolean playAgain = true;
         int totalGuesses = 0;
         int totalGames = 0;
@@ -39,9 +38,7 @@ public class Guess {
             }
 
             // Asks the user if they want to play again
-            System.out.print("Do you want to play again? ");
-            answer = console.nextLine();
-            playAgain = getTruth(answer);
+            playAgain = getYesOrNo(console);
 
             System.out.println();
         }
@@ -67,7 +64,7 @@ public class Guess {
     public static int playGame(Scanner console) {
         Random r = new Random();
         int thinkingNumber = r.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
-        System.out.printf("I'm thinking of a number between " + MIN_NUMBER + " and " + MAX_NUMBER + "...");
+        System.out.println("I'm thinking of a number between " + MIN_NUMBER + " and " + MAX_NUMBER + "...");
         int guesses = 0;
         int guess = MIN_NUMBER - 1; // Initializes guess
 
@@ -85,7 +82,7 @@ public class Guess {
                 System.out.println("It's lower.");
             } else {
                 System.out.println("Invalid choice, please select a number between " 
-                + MAX_NUMBER + " and " + MIN_NUMBER + ".");
+                + MIN_NUMBER + " and " + MAX_NUMBER + ".");
             }
         }
         return guesses;
@@ -113,23 +110,29 @@ public class Guess {
                 games, guesses, guessesPerGame, bestGame);
     }
 
-    // returns true if the first character of answer is y, otherwise returns false.
-    public static boolean getTruth(String answer) {
+    // asks the user for a yes or no answer, then returns true or false.
+    public static boolean getYesOrNo(Scanner console) {
         char firstChar;
-        // This if statement is needed so the program doesn't break if answer is empty
-        while (firstChar != 'y') {
-            if (answer.equals("")) {
-                return false;
-            }
-            if (firstChar == 'n') {
-                return false;
+        String answer;
+
+        System.out.print("Do you want to play again? ");
+        while (true) {
+            answer = console.nextLine();
+            answer = answer.toLowerCase();
+            if (answer.isEmpty()) {
+                firstChar = 'e'; // When there is no first character
             } else {
-                System.out.println("Please enter a valid command");
-                answer = console.nextLine();
-                answer = answer.toLowerCase;
+                firstChar = answer.charAt(0);
             }
 
-            return (firstChar == 'y');
+            switch (firstChar) {
+                case 'y':
+                    return true;
+                case 'n':
+                    return false;
+                default:
+                    System.out.print("Please enter y/n: ");
+            }
         }
     }
 }
