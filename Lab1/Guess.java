@@ -40,7 +40,7 @@ public class Guess {
             // Asks the user if they want to play again
             System.out.print("Do you want to play again? ");
             answer = console.nextLine();
-            playAgain = getTruth(answer);
+            playAgain = getTruth(console, answer);
 
             System.out.println();
         }
@@ -112,8 +112,10 @@ public class Guess {
     }
 
     // returns true if the first character of answer is y, otherwise returns false.
-    public static boolean getTruth(String answer) {
+    public static boolean getTruth(Scanner console, String answer) {
         char firstChar;
+        firstChar = answer.charAt(0);
+        firstChar = Character.toLowerCase(firstChar);
         // This if statement is needed so the program doesn't break if answer is empty
         while (firstChar != 'y') {
             if (answer.equals("")) {
@@ -122,12 +124,10 @@ public class Guess {
             if (firstChar == 'n') {
                 return false;
             } else {
-                System.out.println("Please enter a valid command");
-                answer = console.nextLine();
-                answer = answer.toLowerCase;
+                return false; 
             }
-
-            return (firstChar == 'y');
+  
         }
+        return (firstChar == 'y');
     }
 }
