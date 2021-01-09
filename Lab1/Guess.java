@@ -114,12 +114,17 @@ public class Guess {
     public static boolean getTruth(String answer) {
         char firstChar;
         // This if statement is needed so the program doesn't break if answer is empty
-        if (answer.equals("")) {
+        while (firstChar != 'y'){
+            if (answer.equals("")) {
             return false;
-        }
-        firstChar = answer.charAt(0);
-        firstChar = Character.toLowerCase(firstChar);
+            }
+            if(firstChar == 'n'){
+                return false;
+            }else{
+                System.out.println("Please enter a valid command");
+                answer = console.nextLine();
+                answer = answer.toLowerCase; 
+            }
+
         return (firstChar == 'y');
-    }
-    
 }
