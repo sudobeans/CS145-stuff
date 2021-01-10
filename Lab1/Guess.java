@@ -19,8 +19,7 @@ public class Guess {
         int totalGuesses = 0;
         int totalGames = 0;
         int guessesTaken;
-        
-        int [] guessesInBestGame = new int [] {1};
+        int guessesInBestGame = -1;
         
 
         introGame();
@@ -33,16 +32,10 @@ public class Guess {
             totalGames++;
 
             if (totalGames <= 1) { // Makes the first game the best game
-                guessesInBestGame[0] = guessesTaken;
+                guessesInBestGame = guessesTaken;
             }
-            
-            int guessesinbestgame = (int)(guessesInBestGame[0]);
-            
-            if (guessesinbestgame < guessesTaken){
-               guessesInBestGame[0] = guessesinbestgame;
-            }
-            if (guessesinbestgame > guessesTaken) { // Updates guessesInBestGame
-                guessesInBestGame[0] = guessesTaken;
+            if (guessesTaken < guessesInBestGame) { // Updates guessesInBestGame
+                guessesInBestGame = guessesTaken;
             }
 
             // Asks the user if they want to play again
@@ -107,10 +100,10 @@ public class Guess {
     }
 
     // Takes the users guesses, games, and best game, then displays the user's games' stats.
-    public static void displayResults(int guesses, int games, int [] guessesInBestGame) {
+    public static void displayResults(int guesses, int games, int guessesInBestGame) {
         float guessesPerGame = (float) guesses / games;
         
-        int bestgame = (int)(guessesInBestGame[0]);
+        int bestgame = guessesInBestGame;
         
         System.out.printf(
                 "Overall results:\n" +
