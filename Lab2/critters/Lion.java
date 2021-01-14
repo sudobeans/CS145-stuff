@@ -1,3 +1,8 @@
+// Schuyler Duryee, Alyce Harlan, Judd Morse
+// 01/16/2020
+// CS 145
+// Lab #2
+//
 // This defines a class of critters that move back and forth between two walls.
 // Whenever they bump into a creature, they infect it.
 
