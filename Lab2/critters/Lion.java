@@ -10,6 +10,7 @@ public class Lion extends Critter {
     int stepCounter = 0;
     Color currentColor;
 
+    // See the header for the lion's AI description.
     public Action getMove(CritterInfo info) {
         if (info.getFront().equals(Neighbor.OTHER)) {
             return Action.INFECT;
@@ -22,6 +23,7 @@ public class Lion extends Critter {
         }
     }
 
+    // The lion randomly picks to be red, green, or blue, then stays that way for 3 steps
     public Color getColor() {
         stepCounter++;
         if (stepCounter == 3) {
@@ -31,10 +33,12 @@ public class Lion extends Critter {
         return currentColor;
     }
 
+    // The lion is always an "L"
     public String toString() {
         return "L";
     }
 
+    // Gets a random element from the given array
     public Object getRandomElement(Object[] arr) {
         Random r = new Random();
         int elementToGet = r.nextInt(arr.length);
