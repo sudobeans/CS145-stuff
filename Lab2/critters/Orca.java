@@ -14,13 +14,8 @@ public class Orca extends Critter {
     int stepCounter = 0;
     Action[] stepCycle = {Action.LEFT, Action.LEFT, Action.LEFT, Action.LEFT, Action.HOP};
     Color[] colors = new Color[] {Color.BLACK, Color.WHITE, Color.GRAY};
-    private int move;
     Color currentColor;
 
-    // Constructor
-    public Orca() {
-        this.move = 0;
-    }
 
     // See the header for the orca's AI description.
     public Action getMove(CritterInfo info) {
@@ -37,7 +32,6 @@ public class Orca extends Critter {
                    info.getLeft() == Neighbor.OTHER  ||
                    info.getBack() == Neighbor.OTHER  ||
                    info.getBack() == Neighbor.WALL) {
-            move ++;
             return Action.HOP;
         // Spins and hops
         } else {
@@ -49,7 +43,7 @@ public class Orca extends Critter {
 
     // Alyce wanted to make it alternate colors so yeah you can do that
     public Color getColor () {
-        if (move % 2 == 1) {
+        if (stepCounter % 2 == 1) {
             currentColor = (Color) getRandomElement(colors);
         }
         return currentColor;
@@ -57,9 +51,9 @@ public class Orca extends Critter {
 
     // Not sure what the plan here is
     public String toString() {
-        if (move % 3 == 0) {
+        if (stepCounter % 3 == 0) {
             return "o";
-        } else if (move % 3 == 1) {
+        } else if (stepCounter % 3 == 1) {
             return "O";
         } else {
             return "0";
