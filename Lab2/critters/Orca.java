@@ -8,10 +8,19 @@
 // They also hop out of the way of any creature that tries to infect them.
 
 import java.awt.*;
+import java.util.Random;
 
 public class Orca extends Critter {
     int stepCounter = 0;
     Action[] stepCycle = {Action.LEFT, Action.LEFT, Action.LEFT, Action.LEFT, Action.HOP};
+    Color[] colors = new Color[] {Color.BLACK, Color.WHITE, Color.GRAY};
+    private int move;
+    Color currentColor;
+
+    // Constructor
+    public Orca() {
+        this.move = 0;
+    }
 
     // See the header for the orca's AI description.
     public Action getMove(CritterInfo info) {
@@ -28,6 +37,7 @@ public class Orca extends Critter {
                    info.getLeft() == Neighbor.OTHER  ||
                    info.getBack() == Neighbor.OTHER  ||
                    info.getBack() == Neighbor.WALL) {
+            move ++;
             return Action.HOP;
         // Spins and hops
         } else {
@@ -38,12 +48,27 @@ public class Orca extends Critter {
     }
 
     // Alyce wanted to make it alternate colors so yeah you can do that
-    public Color getColor() {
-        return Color.BLACK;
+    public Color getColor () {
+        if (move % 2 == 1) {
+            currentColor = (Color) getRandomElement(colors);
+        }
+        return currentColor;
     }
 
     // Not sure what the plan here is
     public String toString() {
-        return "h";
+        if (move % 3 == 0) {
+            return "o";
+        } else if (move % 3 == 1) {
+            return "O";
+        } else {
+            return "0";
+        }
+    }
+
+    public Object getRandomElement(Object[] arr) {
+        Random r = new Random();
+        int elementToGet = r.nextInt(arr.length);
+        return arr[elementToGet];
     }
 }
