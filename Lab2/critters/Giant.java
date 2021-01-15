@@ -17,8 +17,7 @@ public class Giant extends Critter{
       if (info.getFront().equals(Neighbor.OTHER)) {
          steps++;
          return Action.INFECT;
-      }else if (info.getFront() == Neighbor.SAME || 
-         info.getFront() == Neighbor.OTHER) {
+      }else if (info.getFront() == (Neighbor.EMPTY)) {
          steps++;
          return Action.HOP;
       } else {
@@ -34,7 +33,7 @@ public class Giant extends Critter{
          return "fie";
       }else if (steps <= 13 && steps <= 18){
          return "foe";
-      }else if (steps <= 19 && steps >= 24){
+      }else {
          return "fum";
       } 
    }
