@@ -4,7 +4,6 @@
 // Lab #2
 //
 // This defines a class of critters that move back and forth between two walls.
-// Whenever they bump into a creature, they infect it.
 
 import java.awt.*;
 import java.util.Random;
