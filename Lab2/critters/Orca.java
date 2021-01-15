@@ -41,7 +41,7 @@ public class Orca extends Critter {
         }
     }
 
-    // Alyce wanted to make it alternate colors so yeah you can do that
+    // Randomly picks between gray, black, and white each step
     public Color getColor () {
         if (stepCounter % 2 == 1) {
             currentColor = (Color) getRandomElement(colors);
@@ -49,7 +49,7 @@ public class Orca extends Critter {
         return currentColor;
     }
 
-    // Not sure what the plan here is
+    // Alternates between o, O, and 0
     public String toString() {
         if (stepCounter % 3 == 0) {
             return "o";
@@ -60,6 +60,7 @@ public class Orca extends Critter {
         }
     }
 
+    // Gets a random element from an array
     public Object getRandomElement(Object[] arr) {
         Random r = new Random();
         int elementToGet = r.nextInt(arr.length);
