@@ -15,18 +15,18 @@ import java.awt.*;
 
 public class Bear extends Critter {
 
-// Establishes starting fields.
+    // Establishes starting fields.
     private boolean polar;
     private int step;
 
-// Constructor boolean, allows user to set polar or black.
+    // Constructor boolean, allows user to set polar or black.
     public Bear(boolean polar) {
         this.polar = polar;
         this.step = 0;
     } // end Bear constructor
 
-// Attacks if another animal/thing is in front,
-// otherwise hops, otherwise turns left.
+    // Attacks if another animal/thing is in front,
+    // otherwise hops, otherwise turns left.
     public Action getMove(CritterInfo info) {
         if (info.getFront() == Neighbor.OTHER) {
             return Action.INFECT;
