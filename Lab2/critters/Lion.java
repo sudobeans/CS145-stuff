@@ -16,7 +16,7 @@ public class Lion extends Critter {
 
     // See the header for the lion's AI description.
     public Action getMove(CritterInfo info) {
-        if (info.getFront().equals(Neighbor.OTHER)) {
+        if (info.getFront() == Neighbor.OTHER) {
             return Action.INFECT;
         } else if (info.getFront() == Neighbor.WALL || info.getRight() == Neighbor.WALL) {
             return Action.LEFT;
