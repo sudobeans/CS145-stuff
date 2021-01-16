@@ -17,7 +17,8 @@ public class Giant extends Critter{
    }
  
    
-   // Hops, and turns right if it cannot hop.
+   //Infects if creature is in front of it 
+   //Hops, and turns right if it cannot hop.
    public Action getMove(CritterInfo info) {
       if (info.getFront().equals(Neighbor.OTHER)) {
          return Action.INFECT;
@@ -40,7 +41,7 @@ public class Giant extends Critter{
          return "fie";
       } else if (steps >= 13 && steps <= 18){
          return "foe";
-      } else { // steps >= 19 && steps <= 24
+      } else { 
          return "fum";
       } 
    }

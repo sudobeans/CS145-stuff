@@ -31,7 +31,8 @@ public class Bear extends Critter {
             return Action.LEFT;
         }
     }
-
+   
+   //determines color based on bear species
     public Color getColor () {
         if (this.polar) {
             return Color.WHITE;
@@ -39,7 +40,7 @@ public class Bear extends Critter {
             return Color.BLACK;
         }
     }
-
+   //defines character that will appear in UI
     public String toString() {
         if (step % 2 == 0) {
             return "/";
