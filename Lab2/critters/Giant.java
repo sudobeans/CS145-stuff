@@ -5,6 +5,9 @@
 //  CS 145
 //  Lab 2 Critters
 
+// This defines a class of critters that hops whenever it can, and turns right whenever it cannot.
+// It also infects any other creature it runs into, 
+// and alternates between "fee", "fie", "foe", and "fum".
 
 import java.awt.*;
 
