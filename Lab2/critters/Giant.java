@@ -6,8 +6,9 @@
 //  Lab 2 Critters
 
 // This defines a class of critters that hops whenever it can, and turns right whenever it cannot.
-// It also infects any other creature it runs into, 
-// and alternates between "fee", "fie", "foe", and "fum".
+// It also infects any other creature it runs into. This leads into it
+// running clockwise around the edges of the map.
+// It alternates between "fee", "fie", "foe", and "fum".
 
 import java.awt.*;
 
