@@ -10,9 +10,9 @@ import java.util.Random;
 
 public class Lion extends Critter {
 
-    Color[] colors = new Color[] {Color.RED, Color.GREEN, Color.BLUE};
+    private static final Color[] colors = new Color[] {Color.RED, Color.GREEN, Color.BLUE};
     private int stepCounter = 0;
-    Color currentColor = (Color) getRandomElement(colors);
+    private Color currentColor = (Color) getRandomElement(colors);
 
     // See the header for the lion's AI description.
     public Action getMove(CritterInfo info) {

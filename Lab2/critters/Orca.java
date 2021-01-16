@@ -13,9 +13,9 @@ import java.util.Random;
 public class Orca extends Critter {
 
     private int stepCounter = 0;
-    Action[] stepCycle = {Action.LEFT, Action.LEFT, Action.LEFT, Action.LEFT, Action.HOP};
-    Color[] colors = new Color[] {Color.BLACK, Color.WHITE, Color.GRAY};
-    Color currentColor;
+    private static final Action[] stepCycle = {Action.LEFT, Action.LEFT, Action.LEFT, Action.LEFT, Action.HOP};
+    private static final Color[] colors = new Color[] {Color.BLACK, Color.WHITE, Color.GRAY};
+    private Color currentColor;
 
     public Orca() {
         this.stepCounter = stepCounter;
