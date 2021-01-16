@@ -10,8 +10,12 @@ import java.awt.*;
 
 public class Giant extends Critter{
 
-   int steps = 0; 
-   
+   private int steps = 0;
+
+   public Giant() {
+      this.steps = steps;
+   }
+
    public Color getColor() {
       return Color.GRAY;  
    }
@@ -41,7 +45,7 @@ public class Giant extends Critter{
          return "fie";
       } else if (steps >= 13 && steps <= 18){
          return "foe";
-      } else { 
+      } else {
          return "fum";
       } 
    }

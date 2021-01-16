@@ -11,11 +11,15 @@ import java.awt.*;
 import java.util.Random;
 
 public class Orca extends Critter {
-    int stepCounter = 0;
+
+    private int stepCounter = 0;
     Action[] stepCycle = {Action.LEFT, Action.LEFT, Action.LEFT, Action.LEFT, Action.HOP};
     Color[] colors = new Color[] {Color.BLACK, Color.WHITE, Color.GRAY};
     Color currentColor;
 
+    public Orca() {
+        this.stepCounter = stepCounter;
+    }
 
     // See the header for the orca's AI description.
     public Action getMove(CritterInfo info) {
