@@ -10,10 +10,10 @@ import java.awt.*;
 
 public class Giant extends Critter{
 
-   private int steps = 0;
+   private int steps;
 
    public Giant() {
-      this.steps = steps;
+      this.steps = 0;
    }
 
    public Color getColor() {
@@ -24,6 +24,11 @@ public class Giant extends Critter{
    //Infects if creature is in front of it 
    //Hops, and turns right if it cannot hop.
    public Action getMove(CritterInfo info) {
+      steps++;
+      if (steps > 24) {
+         steps = 1;
+      }
+
       if (info.getFront().equals(Neighbor.OTHER)) {
          return Action.INFECT;
       }else if (info.getFront() == (Neighbor.EMPTY)) {
@@ -35,10 +40,6 @@ public class Giant extends Critter{
     
    // Alternates between "fee", "fie", "foe", and "fum".
    public String toString() {
-      steps++;
-      if (steps > 24) {
-         steps = 1;
-      }
       if (steps <= 6){
          return "fee";
       } else if (steps >= 7 && steps <= 12){
