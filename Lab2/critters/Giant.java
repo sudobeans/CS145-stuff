@@ -20,26 +20,27 @@ public class Giant extends Critter{
    // Hops, and turns right if it cannot hop.
    public Action getMove(CritterInfo info) {
       if (info.getFront().equals(Neighbor.OTHER)) {
-         steps++;
          return Action.INFECT;
       }else if (info.getFront() == (Neighbor.EMPTY)) {
-         steps++;
          return Action.HOP;
       } else {
-         steps++;
          return Action.RIGHT;
       }
    }
     
    // Alternates between "fee", "fie", "foe", and "fum".
    public String toString() {
+      steps++;
+      if (steps > 24) {
+         steps = 1;
+      }
       if (steps <= 6){
          return "fee";
-      }else if (steps >= 7 && steps <= 12){
+      } else if (steps >= 7 && steps <= 12){
          return "fie";
-      }else if (steps <= 13 && steps <= 18){
+      } else if (steps >= 13 && steps <= 18){
          return "foe";
-      }else {
+      } else { // steps >= 19 && steps <= 24
          return "fum";
       } 
    }
