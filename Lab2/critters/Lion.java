@@ -12,7 +12,7 @@ public class Lion extends Critter {
 
     Color[] colors = new Color[] {Color.RED, Color.GREEN, Color.BLUE};
     int stepCounter = 0;
-    Color currentColor;
+    Color currentColor = (Color) getRandomElement(colors);
 
     // See the header for the lion's AI description.
     public Action getMove(CritterInfo info) {
