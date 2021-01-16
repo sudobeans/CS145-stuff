@@ -1,5 +1,10 @@
-// This defines a class of critters that move back and forth between two walls.
-// Whenever they bump into a creature, they infect it.
+//  Alyce H
+//  Judd Morse
+//  Schuyler
+
+//  CS 145
+//  Lab 2 Critters
+
 
 import java.awt.*;
 
