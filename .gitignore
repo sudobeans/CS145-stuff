@@ -3,3 +3,6 @@
 
 # Ignore homework
 *homework*
+
+# Ignore .class files
+*.class
