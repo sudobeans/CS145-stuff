@@ -12,10 +12,11 @@ public class Lion extends Critter {
 
     private static final Color[] colors = new Color[] {Color.RED, Color.GREEN, Color.BLUE};
     private int stepCounter;
-    private Color currentColor = (Color) getRandomElement(colors);
+    private Color currentColor;
 
     public Lion() {
         this.stepCounter = 0;
+        this.currentColor = (Color) getRandomElement(colors);
     }
 
     // See the header for the lion's AI description.
