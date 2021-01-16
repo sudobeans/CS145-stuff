@@ -17,7 +17,7 @@ public class Giant extends Critter{
    }
  
    
-
+   // Hops, and turns right if it cannot hop.
    public Action getMove(CritterInfo info) {
       if (info.getFront().equals(Neighbor.OTHER)) {
          steps++;
@@ -31,6 +31,7 @@ public class Giant extends Critter{
       }
    }
     
+   // Alternates between "fee", "fie", "foe", and "fum".
    public String toString() {
       if (steps <= 6){
          return "fee";
