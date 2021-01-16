@@ -19,7 +19,6 @@ public class Giant extends Critter{
    public Color getColor() {
       return Color.GRAY;  
    }
- 
    
    //Infects if creature is in front of it 
    //Hops, and turns right if it cannot hop.
@@ -31,7 +30,7 @@ public class Giant extends Critter{
 
       if (info.getFront().equals(Neighbor.OTHER)) {
          return Action.INFECT;
-      }else if (info.getFront() == (Neighbor.EMPTY)) {
+      } else if (info.getFront() == (Neighbor.EMPTY)) {
          return Action.HOP;
       } else {
          return Action.RIGHT;
@@ -50,5 +49,4 @@ public class Giant extends Critter{
          return "fum";
       } 
    }
-    
 }
