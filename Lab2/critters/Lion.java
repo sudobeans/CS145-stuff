@@ -11,8 +11,12 @@ import java.util.Random;
 public class Lion extends Critter {
 
     private static final Color[] colors = new Color[] {Color.RED, Color.GREEN, Color.BLUE};
-    private int stepCounter = 0;
+    private int stepCounter;
     private Color currentColor = (Color) getRandomElement(colors);
+
+    public Lion() {
+        this.stepCounter = 0;
+    }
 
     // See the header for the lion's AI description.
     public Action getMove(CritterInfo info) {
@@ -25,10 +29,6 @@ public class Lion extends Critter {
         } else {
             return Action.HOP;
         }
-    }
-
-    public Lion() {
-        this.stepCounter = stepCounter;
     }
 
     // The lion randomly picks to be red, green, or blue, then stays that way for 3 steps

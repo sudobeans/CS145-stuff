@@ -12,13 +12,13 @@ import java.util.Random;
 
 public class Orca extends Critter {
 
-    private int stepCounter = 0;
+    private int stepCounter;
     private static final Action[] stepCycle = {Action.LEFT, Action.LEFT, Action.LEFT, Action.LEFT, Action.HOP};
     private static final Color[] colors = new Color[] {Color.BLACK, Color.WHITE, Color.GRAY};
     private Color currentColor;
 
     public Orca() {
-        this.stepCounter = stepCounter;
+        this.stepCounter = 0;
     }
 
     // See the header for the orca's AI description.
