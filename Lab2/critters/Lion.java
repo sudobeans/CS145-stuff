@@ -21,6 +21,8 @@ public class Lion extends Critter {
 
     // See the header for the lion's AI description.
     public Action getMove(CritterInfo info) {
+        stepCounter++;
+        
         if (info.getFront() == Neighbor.OTHER) {
             return Action.INFECT;
         } else if (info.getFront() == Neighbor.WALL || info.getRight() == Neighbor.WALL) {
@@ -34,7 +36,6 @@ public class Lion extends Critter {
 
     // The lion randomly picks to be red, green, or blue, then stays that way for 3 steps
     public Color getColor() {
-        stepCounter++;
         if (stepCounter == 3) {
             currentColor = (Color) getRandomElement(colors);
             stepCounter = 0;
