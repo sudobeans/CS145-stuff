@@ -3,7 +3,10 @@
 // CS 145
 // Lab #2
 //
-// This defines a class of critters that move back and forth between two walls.
+// This defines a class of critters that mostly move back and forth between two walls.
+// Whenever they bump into each other, they turn right, and whenever they bump
+// into another creature, they infect it.
+// They also alternate randomly between red, green, and blue.
 
 import java.awt.*;
 import java.util.Random;
@@ -12,14 +15,17 @@ public class Lion extends Critter {
 
     private static final Color[] colors = new Color[] {Color.RED, Color.GREEN, Color.BLUE};
     private int stepCounter;
-    private Color currentColor = (Color) getRandomElement(colors);
+    private Color currentColor;
 
     public Lion() {
         this.stepCounter = 0;
+        this.currentColor = (Color) getRandomElement(colors);
     }
 
     // See the header for the lion's AI description.
     public Action getMove(CritterInfo info) {
+        stepCounter++;
+
         if (info.getFront() == Neighbor.OTHER) {
             return Action.INFECT;
         } else if (info.getFront() == Neighbor.WALL || info.getRight() == Neighbor.WALL) {
@@ -33,7 +39,6 @@ public class Lion extends Critter {
 
     // The lion randomly picks to be red, green, or blue, then stays that way for 3 steps
     public Color getColor() {
-        stepCounter++;
         if (stepCounter == 3) {
             currentColor = (Color) getRandomElement(colors);
             stepCounter = 0;
