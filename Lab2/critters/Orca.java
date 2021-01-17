@@ -23,22 +23,79 @@ public class Orca extends Critter {
 
     // See the header for the orca's AI description.
     public Action getMove(CritterInfo info) {
-        // Infects other creatures
-        if (info.getFront() == Neighbor.OTHER) {
-            return Action.INFECT;
-        // Turns to face away from walls and allies
-        } else if (info.getFront() == Neighbor.WALL || 
-                   info.getFront() == Neighbor.SAME ||
-                   info.getRight() == Neighbor.WALL) {
-            return Action.LEFT;
-        // Hops away from other creatures and walls
-        } else if (info.getRight() == Neighbor.OTHER ||
-                   info.getLeft() == Neighbor.OTHER  ||
-                   info.getBack() == Neighbor.OTHER  ||
-                   info.getBack() == Neighbor.WALL) {
-            return Action.HOP;
-        // Spins and hops
-        } else {
+        if (info.getDirection() == Direction.NORTH) {
+            if(info.getFront() == Neighbor.OTHER) {
+                return Action.INFECT;
+            }
+            else if (info.getFront() != Neighbor.OTHER && info.getLeft() == Neighbor.OTHER) {
+                return Action.LEFT;
+            }
+            else if (info.getFront() != Neighbor.OTHER && info.getRight() == Neighbor.OTHER) {
+                return Action.RIGHT;
+            }
+            else if (info.getFront() == Neighbor.EMPTY) {
+                stepCounter ++;
+                return Action.HOP;
+            } else {
+                stepCounter++;
+                return Action.LEFT;
+            }
+        }
+        if (info.getDirection() == Direction.EAST) {
+            if(info.getFront() == Neighbor.OTHER) {
+                return Action.INFECT;
+            }
+            else if (info.getFront() != Neighbor.OTHER && info.getLeft() == Neighbor.OTHER) {
+                return Action.LEFT;
+            }
+            else if (info.getFront() != Neighbor.OTHER && info.getRight() == Neighbor.OTHER) {
+                return Action.RIGHT;
+            }
+            else if (info.getFront() == Neighbor.EMPTY) {
+                stepCounter ++;
+                return Action.HOP;
+            } else {
+                stepCounter++;
+                return Action.LEFT;
+            }
+        }
+        if (info.getDirection() == Direction.SOUTH) {
+            if(info.getFront() == Neighbor.OTHER) {
+                return Action.INFECT;
+            }
+            else if (info.getFront() != Neighbor.OTHER && info.getLeft() == Neighbor.OTHER) {
+                return Action.LEFT;
+            }
+            else if (info.getFront() != Neighbor.OTHER && info.getRight() == Neighbor.OTHER) {
+                return Action.RIGHT;
+            }
+            else if (info.getFront() == Neighbor.EMPTY) {
+                stepCounter ++;
+                return Action.HOP;
+            } else {
+                stepCounter++;
+                return Action.LEFT;
+            }
+        }
+        if (info.getDirection() == Direction.WEST) {
+            if(info.getFront() == Neighbor.OTHER) {
+                return Action.INFECT;
+            }
+            else if (info.getFront() != Neighbor.OTHER && info.getLeft() == Neighbor.OTHER) {
+                return Action.LEFT;
+            }
+            else if (info.getFront() != Neighbor.OTHER && info.getRight() == Neighbor.OTHER) {
+                return Action.RIGHT;
+            }
+            else if (info.getFront() == Neighbor.EMPTY) {
+                stepCounter ++;
+                return Action.HOP;
+            } else {
+                stepCounter++;
+                return Action.LEFT;
+            }
+        }
+        else {
             stepCounter++;
             stepCounter %= stepCycle.length; // Makes its steps loop
             return stepCycle[stepCounter];
