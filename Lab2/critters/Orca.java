@@ -3,9 +3,8 @@
 // CS 145
 // Lab #2
 //
-// This defines a class of critters that slowly move back and forth between two walls,
-// rotating as they travel. 
-// They also hop out of the way of any creature that tries to infect them.
+// This defines a class of critters that looks for prey
+// and tries to infect while it's close by.
 
 import java.awt.*;
 import java.util.Random;
@@ -13,24 +12,36 @@ import java.util.Random;
 public class Orca extends Critter {
 
     private int stepCounter;
-    private static final Action[] stepCycle = {Action.LEFT, Action.LEFT, Action.LEFT, Action.LEFT, Action.HOP};
-    private static final Color[] colors = new Color[] {Color.BLACK, Color.WHITE, Color.GRAY};
+    private static final Action[] stepCycle = {Action.LEFT,
+            Action.LEFT, Action.LEFT, Action.LEFT, Action.HOP};
+    private static final Color[] colors = new Color[]
+            {Color.BLACK, Color.WHITE, Color.GRAY};
     private Color currentColor;
 
+    // Constructor
     public Orca() {
         this.stepCounter = 0;
     }
 
-    // See the header for the orca's AI description.
+    // The Orca Class looks for prey within its
+    // immediate area and follows it until it can
+    // infect. It checks its own direction and
+    // takes action, either infecting, hopping,
+    // or turning toward prey.
+    // Potential to compare its direction with
+    // Neighbor.OTHER's direction, to move out
+    // of harm's way before getting attacked.
     public Action getMove(CritterInfo info) {
         if (info.getDirection() == Direction.NORTH) {
             if(info.getFront() == Neighbor.OTHER) {
                 return Action.INFECT;
             }
-            else if (info.getFront() != Neighbor.OTHER && info.getLeft() == Neighbor.OTHER) {
+            else if (info.getFront() != Neighbor.OTHER &&
+                    info.getLeft() == Neighbor.OTHER) {
                 return Action.LEFT;
             }
-            else if (info.getFront() != Neighbor.OTHER && info.getRight() == Neighbor.OTHER) {
+            else if (info.getFront() != Neighbor.OTHER &&
+                    info.getRight() == Neighbor.OTHER) {
                 return Action.RIGHT;
             }
             else if (info.getFront() == Neighbor.EMPTY) {
@@ -45,10 +56,12 @@ public class Orca extends Critter {
             if(info.getFront() == Neighbor.OTHER) {
                 return Action.INFECT;
             }
-            else if (info.getFront() != Neighbor.OTHER && info.getLeft() == Neighbor.OTHER) {
+            else if (info.getFront() != Neighbor.OTHER &&
+                    info.getLeft() == Neighbor.OTHER) {
                 return Action.LEFT;
             }
-            else if (info.getFront() != Neighbor.OTHER && info.getRight() == Neighbor.OTHER) {
+            else if (info.getFront() != Neighbor.OTHER &&
+                    info.getRight() == Neighbor.OTHER) {
                 return Action.RIGHT;
             }
             else if (info.getFront() == Neighbor.EMPTY) {
@@ -63,10 +76,12 @@ public class Orca extends Critter {
             if(info.getFront() == Neighbor.OTHER) {
                 return Action.INFECT;
             }
-            else if (info.getFront() != Neighbor.OTHER && info.getLeft() == Neighbor.OTHER) {
+            else if (info.getFront() != Neighbor.OTHER &&
+                    info.getLeft() == Neighbor.OTHER) {
                 return Action.LEFT;
             }
-            else if (info.getFront() != Neighbor.OTHER && info.getRight() == Neighbor.OTHER) {
+            else if (info.getFront() != Neighbor.OTHER &&
+                    info.getRight() == Neighbor.OTHER) {
                 return Action.RIGHT;
             }
             else if (info.getFront() == Neighbor.EMPTY) {
@@ -81,10 +96,12 @@ public class Orca extends Critter {
             if(info.getFront() == Neighbor.OTHER) {
                 return Action.INFECT;
             }
-            else if (info.getFront() != Neighbor.OTHER && info.getLeft() == Neighbor.OTHER) {
+            else if (info.getFront() != Neighbor.OTHER &&
+                    info.getLeft() == Neighbor.OTHER) {
                 return Action.LEFT;
             }
-            else if (info.getFront() != Neighbor.OTHER && info.getRight() == Neighbor.OTHER) {
+            else if (info.getFront() != Neighbor.OTHER &&
+                    info.getRight() == Neighbor.OTHER) {
                 return Action.RIGHT;
             }
             else if (info.getFront() == Neighbor.EMPTY) {
@@ -100,7 +117,7 @@ public class Orca extends Critter {
             stepCounter %= stepCycle.length; // Makes its steps loop
             return stepCycle[stepCounter];
         }
-    }
+    } // end getMove method
 
     // Randomly picks between gray, black, and white each step
     public Color getColor () {
