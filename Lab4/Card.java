@@ -35,7 +35,7 @@ public class Card {
                 this.getRank() == other.getRank());
     }
 
-    // Takes a String, s, and returns the rank associated with the given string.
+    // Takes a Rank, r and returns the rank associated with the given string.
     public static String rankToString(Rank r) {
         return r.toString().toLowerCase();
     }
