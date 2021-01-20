@@ -2,14 +2,20 @@ import java.util.*;
 
 // This class represents a player. A player has a hand and a win/not win boolean.
 public class Player {
-    // the player's hand
+    // the player's hand and name
     private ArrayList<Card> hand;
+    private String name;
     // winner should be set to true if they win
     private boolean winner;
 
-    public Player() {
+    public Player(String name) {
         this.hand = new ArrayList<>();
         this.winner = false;
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     // Sets winner to the boolean passed in
@@ -28,8 +34,17 @@ public class Player {
     }
     
     // Removes the given card from the player's hand
-    public void removeCardFromHand(Card card) {
+    public void removeFromHand(Card card) {
         hand.remove(hand.indexOf(card));
+    }
+    // Removes the card at the given index from the player's hand
+    public void removeFromHand(int index) {
+        hand.remove(index);
+    }
+
+    // Returns the card from the player's hand at the given index
+    public Card getCardAt(int index) {
+        return hand.get(index);
     }
 
     // Returns a copy of the cards in the player's hand
