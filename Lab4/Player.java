@@ -23,7 +23,7 @@ public class Player {
     }
 
     // Adds a card to the player's hand
-    public void addCardToHand(Card card) {
+    public void addToHand(Card card) {
         hand.add(card);
     }
     
@@ -36,5 +36,16 @@ public class Player {
     public ArrayList<Card> getHand() {
         // My debugger says this is an "unchecked cast", whatever that means!
         return (ArrayList<Card>) hand.clone();
+    }
+
+    // Returns the player's hand as a string.
+    public String handToString() {
+        String handString = "";
+        // Adds each card to the handString
+        for (int i = 0; i < hand.size(); i++) {
+            handString += (i + ": " + hand.get(i).toString() + "\n");
+        }
+
+        return handString;
     }
 }
