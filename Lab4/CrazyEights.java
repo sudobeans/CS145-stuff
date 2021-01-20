@@ -27,9 +27,9 @@ public class CrazyEights {
     // Takes a Player representing the person whose turn it is
     // and a Scanner representing the console.
     // Asks the player which card they want to play, or quit.
-    // Returns and removes a card if they said one. If they answered with "q", return null.
+    // Returns the number that the player entered. If they answered with "q", return -1.
     // If the hand is empty, throw an IllegalArgumentException.
-    public static Card promptToPlayCard(Scanner console, Player player) {
+    public static int promptToPlayCard(Scanner console, Player player) {
         if (player.getHand().isEmpty()) {
             throw new IllegalArgumentException("Player has no cards in hand");
         }
@@ -42,7 +42,7 @@ public class CrazyEights {
         while (true) {
             answer = console.nextLine().toLowerCase();
             if (answer.equals("q")) {
-                return null;
+                return -1;
             } else if (!isInt(answer)) {
                 System.out.println("That's not a number! Enter the number associated with " +
                                    "the card you want to play.");
@@ -53,9 +53,7 @@ public class CrazyEights {
                     System.out.println("You don't have a card associated with that " +
                                        "number in your hand!");
                 } else {
-                    Card card = player.getCardAt(answerAsInt);
-                    player.removeFromHand(answerAsInt);
-                    return card;
+                    return answerAsInt;
                 }
             }
 
