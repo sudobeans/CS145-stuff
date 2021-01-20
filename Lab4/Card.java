@@ -49,4 +49,16 @@ public class Card {
     public String toString() {
         return rankToString(this.getRank()) + " of " + suitToString(this.getSuit());
     }
+
+    // Generates a fifty-two card deck. The cards are not shuffled.
+    public static Stack<Card> generateDeck() {
+        Stack<Card> deck = new Stack<>();
+        for (Rank r : Rank.values()) {
+            for (Suit s : Suit.values()) {
+                deck.push(new Card(r, s));
+            }
+        }
+
+        return deck;
+    }
 }

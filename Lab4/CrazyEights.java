@@ -10,11 +10,16 @@ import java.util.*;
 public class CrazyEights {
     public static void main(String[] args) {
         // Test code
+        Stack<Card> deck = Card.generateDeck();
+        Collections.shuffle(deck);
+
         Scanner console = new Scanner(System.in);
         Player bob = new Player("bob");
         bob.addToHand(new Card(Card.Rank.ACE, Card.Suit.SPADES));
         bob.addToHand(new Card(Card.Rank.TWO, Card.Suit.DIAMONDS));
         bob.addToHand(new Card(Card.Rank.QUEEN, Card.Suit.HEARTS));
+        // Draw a card
+        bob.addToHand(deck.pop());
 
         System.out.println(promptToPlayCard(console, bob));
     }
