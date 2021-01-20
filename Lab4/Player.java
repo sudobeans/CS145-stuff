@@ -1,6 +1,6 @@
 import java.util.*;
 
-// This class represents a player. A player has a hand and a win/not win boolean.
+// This class represents a player. A player has a hand, a name, and a win/not win boolean.
 public class Player {
     // the player's hand and name
     private ArrayList<Card> hand;
@@ -8,12 +8,14 @@ public class Player {
     // winner should be set to true if they win
     private boolean winner;
 
+    // Makes a player with the given name
     public Player(String name) {
         this.hand = new ArrayList<>();
         this.winner = false;
         this.name = name;
     }
 
+    // Returns the player's name
     public String getName() {
         return this.name;
     }
