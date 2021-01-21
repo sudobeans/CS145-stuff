@@ -65,4 +65,9 @@ public class Player {
 
         return handString;
     }
+
+    // Returns the player's name, how many cards they have, and their win status
+    public String toString() {
+        return ("[Name: " + name + ", Cards: " + hand.size() + ", Winner: " + winner + "]");
+    }
 }
