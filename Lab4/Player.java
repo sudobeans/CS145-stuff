@@ -31,7 +31,7 @@ public class Player {
     }
 
     // Adds a card to the player's hand
-    public static void addToHand(Card card) {
+    public void addToHand(Card card) {
         hand.add(card);
     }
     
@@ -39,9 +39,11 @@ public class Player {
     public void removeFromHand(Card card) {
         hand.remove(hand.indexOf(card));
     }
-    // Removes the card at the given index from the player's hand
-    public void removeFromHand(int index) {
+    // Removes the card at the given index from the player's hand, then returns it
+    public Card removeFromHand(int index) {
+        Card removedCard = hand.get(index);
         hand.remove(index);
+        return removedCard;
     }
 
     // Returns the card from the player's hand at the given index

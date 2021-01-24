@@ -10,8 +10,6 @@ import java.util.*;
 public class CrazyEights {
     public static final int MAX_PLAYERS = 5;
     public static void main(String[] args) {
-        // test();
-
         Scanner console = new Scanner(System.in);
         int numberOfPlayers;
         Queue<Player> players = new LinkedList<>();
@@ -24,8 +22,11 @@ public class CrazyEights {
             String name = promptForName(console, i);
             players.add(new Player(name));
         }
+
+        playGame(console, players);
     }
 
+    // Plays a game of crazy eights. Takes in a console and a list of players.
     public static void playGame(Scanner console, Queue<Player> playerQueue) {
         boolean playing = true;
         Player winner;
@@ -34,8 +35,17 @@ public class CrazyEights {
         // The suit the last player who played an eight chose
         Card.Suit chosenSuit;
 
-        // Shuffles and draws a card from the deck
+        // Shuffles the deck
         Collections.shuffle(deck);
+        
+        // Draws 5 cards for each player
+        for (Player player : playerQueue) {
+            for (int i = 0; i < 5; i++) {
+                player.addToHand(deck.pop());
+            }
+        }
+
+        // Draws the first card
         discardPile.push(deck.pop());
         System.out.println("The first card from the deck is " + discardPile.peek() + "!\n");
         // prevents the game from breaking if the first card is an 8
@@ -48,13 +58,49 @@ public class CrazyEights {
                 System.out.println("This card is an eight, and the chosen suit is " +
                                    chosenSuit.toString().toLowerCase() + ".");
             }
+
+            // Draws cards until the player has a card they can play
+            while (!canPlayHand(topCard, currentPlayer, chosenSuit)) {
+                conditionalDraw(deck, discardPile, currentPlayer);
+            }
+
             System.out.println(currentPlayer.getName() + "'s hand:");
             System.out.println(currentPlayer.handToString());
 
+            // Asks the player for a card
+            int playedCard = promptToPlayCard(console, currentPlayer);
+            // If they cannot play the card, asks them again
+            while (!canPlayCard(topCard, currentPlayer.getCardAt(playedCard), chosenSuit)) {
+                System.out.println("You can't play that card!");
+                playedCard = promptToPlayCard(console, currentPlayer);
+            }
+            // Plays the card
+            discardPile.push(currentPlayer.removeFromHand(playedCard));
+
+            // Asks the player what suit they want if they played an 8
+            if (discardPile.peek().getRank() == Card.Rank.EIGHT) {
+                System.out.println("You played an 8, so you get to choose the next suit.");
+                
+                int index = 0;
+                for (Card.Suit s : Card.Suit.values()) {
+                    System.out.println(index + ": " + s.toString());
+                    index++;
+                }
+                System.out.print("Pick a number from this list: ");
+                // Asks for a number and converts their answer to an integer
+                chosenSuit = Card.Suit.values()[Integer.valueOf(console.nextLine())];
+            }
+
+            if (currentPlayer.getHand().isEmpty()) {
+                currentPlayer.setWinner(true);
+                playing = false;
+                System.out.println(currentPlayer.getName() + " has no cards, so they win!");
+            }
+
+            System.out.println();
+
             // Shifts the queue of players
             playerQueue.add(playerQueue.remove());
-
-            break; // Remove this whenever you add some code that sets playing to false
         }
     }
 
@@ -70,6 +116,17 @@ public class CrazyEights {
         // Is the top card an eight, and does this card have the chosen suit?
         (topCard.getRank() == Card.Rank.EIGHT && playedCard.getSuit() == chosenSuit)
         );
+    }
+
+    // Takes the card on top of the discard pile, a player, and the Suit that the last player
+    // who played an eight chose. Returns true if they have a Card in their hand they can play.
+    public static boolean canPlayHand(Card topCard, Player player, Card.Suit chosenSuit) {
+        for (Card c : player.getHand()) {
+            if (canPlayCard(topCard, c, chosenSuit)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Takes a Scanner representing the console, and an int for the player's number,
@@ -142,34 +199,21 @@ public class CrazyEights {
         }
         return true;
     }
-
-    // a method you can put code in to test stuff
-    public static void test() {
-        // Test code
-        Stack<Card> deck = Card.generateDeck();
-        Collections.shuffle(deck);
-
-        Scanner console = new Scanner(System.in);
-        Player bob = new Player("bob");
-        bob.addToHand(new Card(Card.Rank.ACE, Card.Suit.SPADES));
-        bob.addToHand(new Card(Card.Rank.TWO, Card.Suit.DIAMONDS));
-        bob.addToHand(new Card(Card.Rank.QUEEN, Card.Suit.HEARTS));
-        // Draw a card
-        bob.addToHand(deck.pop());
-        System.out.println(promptForPlayers(console));
-        System.out.println(promptToPlayCard(console, bob));
-    }
     
-    public void conditionalDraw(boolean canPlayCard, Stack<Card> deck, Stack<Card> discard, Player player) {
-    	while(!canPlayCard) {
-    		if(!deck.isEmpty()) {
-    			int deckSize = discard.size();
-    			for(int i = 0; i < deckSize; i++) {
-    				deck.push(discard.pop());
-    			}
-    			Collections.shuffle(deck);
-    		}
-    		Player.addToHand(deck.pop());
-    	}
+    // Draws a card from deck and adds it to a player's hand. If there are no cards in deck,
+    // shuffle the cards from discard into deck.
+    public static void conditionalDraw(Stack<Card> deck, Stack<Card> discard, Player player) {
+        if(deck.isEmpty()) {
+            Card discardTop = discard.pop();
+            int deckSize = discard.size();
+            for(int i = 0; i < deckSize; i++) {
+                deck.push(discard.pop());
+            }
+            discard.push(discardTop);
+            Collections.shuffle(deck);
+            System.out.println("There were no more cards in the deck, so the discard pile\n" + 
+                               "was shuffled into the draw pile.");
+        }
+        player.addToHand(deck.pop());
     }
 }
