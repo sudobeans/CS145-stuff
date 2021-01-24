@@ -31,7 +31,7 @@ public class Player {
     }
 
     // Adds a card to the player's hand
-    public void addToHand(Card card) {
+    public static void addToHand(Card card) {
         hand.add(card);
     }
     
