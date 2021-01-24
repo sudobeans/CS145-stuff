@@ -159,4 +159,17 @@ public class CrazyEights {
         System.out.println(promptForPlayers(console));
         System.out.println(promptToPlayCard(console, bob));
     }
+    
+    public void conditionalDraw(boolean canPlayCard, Stack<Card> deck, Stack<Card> discard, Player player) {
+    	while(!canPlayCard) {
+    		if(!deck.isEmpty()) {
+    			int deckSize = discard.size();
+    			for(int i = 0; i < deckSize; i++) {
+    				deck.push(discard.pop());
+    			}
+    			Collections.shuffle(deck);
+    		}
+    		Player.addToHand(deck.pop());
+    	}
+    }
 }
