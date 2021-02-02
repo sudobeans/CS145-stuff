@@ -5,13 +5,21 @@
 
 // Lab 3: Letter Inventory
 
+import java.util.*;
+
 public class LetterInventory {
     // Letters passed into any method may be uppercase or lowercase.
+    private Map<Character, Integer> charCounts;
+    private int size;
+    // The range of characters to count
+    public static final int START = 'a';
+    public static final int END = 'z';
 
     // Constructs an inventory (a count) of the alphabetic letters in the given string, 
     // ignoring the case of letters and ignoring any non-alphabetic characters.
     public LetterInventory(String data) {
-
+        charCounts = new TreeMap<>();
+        size = 0;
     }    
 
     // Returns a count of how many of this letter are in the inventory. 
