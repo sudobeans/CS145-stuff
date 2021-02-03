@@ -20,6 +20,18 @@ public class LetterInventory {
     public LetterInventory(String data) {
         charCounts = new TreeMap<>();
         size = 0;
+        // Initializes charCounts
+        for (char c = START; c < END; c++) {
+            charCounts.put(c, 0);
+        }
+        // Adds the string to charCounts
+        for (char c : data.toCharArray()) { 
+            if (charCounts.containsKey(c)) {
+                int newValueAtC = charCounts.get(c) + 1;
+                charCounts.put(c, newValueAtC);
+                size++;
+            }
+        }
     }    
 
     // Returns a count of how many of this letter are in the inventory. 
