@@ -21,7 +21,7 @@ public class LetterInventory {
         charCounts = new TreeMap<>();
         size = 0;
         // Initializes charCounts
-        for (char c = START; c < END; c++) {
+        for (char c = START; c <= END; c++) {
             charCounts.put(c, 0);
         }
         // Adds the string to charCounts
