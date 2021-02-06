@@ -43,19 +43,16 @@ public class LetterInventory {
     // Sets the count for the given letter to the given value. 
     public void set(char letter, int value) {
         charCounts.put(letter, value);
-    	return;
     }
 
     // Returns the sum of all of the counts in this inventory.
     public int size() {
-    	return charCounts.values().stream().mapToInt(i->i).sum();
+    	return size;
     }
 
     // Returns true if this inventory is empty (all counts are 0).
     public boolean isEmpty() {
-        if(charCounts.isEmpty() == true) {
-        	return true;
-        } else { return false;}
+        return (size <= 0);
     }
 
     // Returns a String representation of the inventory.
