@@ -37,22 +37,25 @@ public class LetterInventory {
     // Returns a count of how many of this letter are in the inventory. 
     // If a non-alphabetic character is passed, throws an IllegalArgumentException.
     public int get(char letter) {
-        return 0;
+        return charCounts.get(letter);
     }
 
     // Sets the count for the given letter to the given value. 
     public void set(char letter, int value) {
-        return;
+        charCounts.put(letter, value);
+    	return;
     }
 
     // Returns the sum of all of the counts in this inventory.
     public int size() {
-        return 0;
+    	return charCounts.values().stream().mapToInt(i->i).sum();
     }
 
     // Returns true if this inventory is empty (all counts are 0).
     public boolean isEmpty() {
-        return false;
+        if(charCounts.isEmpty() == true) {
+        	return true;
+        } else { return false;}
     }
 
     // Returns a String representation of the inventory.
