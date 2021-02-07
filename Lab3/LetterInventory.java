@@ -20,6 +20,7 @@ public class LetterInventory {
     public LetterInventory(String data) {
         charCounts = new TreeMap<>();
         size = 0;
+        data = data.toLowerCase();
         // Initializes charCounts
         for (char c = START; c <= END; c++) {
             charCounts.put(c, 0);
