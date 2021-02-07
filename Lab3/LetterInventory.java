@@ -57,13 +57,13 @@ public class LetterInventory {
     }
 
     // Returns a String representation of the inventory.
-    public String toString(char letter, int size) {
+    public String toString() {
         System.out.print("[");
-        for(int sort = START; sort <= END; sort++){
-           for(int repeat = 0; repeat <= size; repeat++){
-               System.out.print(letter);
+           for(Integer value : charCounts.values()){
+               for(int repeat = 0; repeat<= value - 1; repeat++){
+                   System.out.print(charCounts.get(value));
+               }
            }
-        }
         System.out.print("]");
         return null;
     }
