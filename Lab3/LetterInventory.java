@@ -56,7 +56,8 @@ public class LetterInventory {
     }
 
     // Returns a String representation of the inventory.
-    public String toString(int size) {
+    public String toString(char letter, int size) {
+        charCounts.toString();
         return null;
     }
 
