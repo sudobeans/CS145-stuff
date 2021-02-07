@@ -56,7 +56,7 @@ public class LetterInventory {
     }
 
     // Returns a String representation of the inventory.
-    public String toString() {
+    public String toString(int size) {
         return null;
     }
 
