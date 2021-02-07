@@ -12,8 +12,8 @@ public class LetterInventory {
     private Map<Character, Integer> charCounts;
     private int size;
     // The range of characters to count
-    public static final int START = 'a';
-    public static final int END = 'z';
+    public static final char START = 'a';
+    public static final char END = 'z';
 
     // Constructs an inventory (a count) of the alphabetic letters in the given string, 
     // ignoring the case of letters and ignoring any non-alphabetic characters.
