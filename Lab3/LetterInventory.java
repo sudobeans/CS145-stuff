@@ -58,13 +58,15 @@ public class LetterInventory {
 
     // Returns a String representation of the inventory.
     public String toString() {
-           for(char valyou : charCounts.keySet()){
-               int value = charCounts.get(valyou);
-               for(int repeat = 0; repeat<= value - 1; repeat++){
-                   charCounts.get(valyou);
-               }
-           }
-        return charCounts.toString();
+        String result = "[";
+        for (char valyou : charCounts.keySet()){
+            int value = charCounts.get(valyou);
+            for(int repeat = 0; repeat < value; repeat++){
+                result += charCounts.get(valyou);
+            }
+        }
+        result += "]";
+        return result;
     }
 
     // Constructs and returns a new LetterInventory object that represents the 
