@@ -62,7 +62,7 @@ public class LetterInventory {
         for (char valyou : charCounts.keySet()){
             int value = charCounts.get(valyou);
             for(int repeat = 0; repeat < value; repeat++){
-                result += charCounts.get(valyou);
+                result += valyou;
             }
         }
         result += "]";
