@@ -58,26 +58,20 @@ public class LetterInventory {
 
     // Returns a String representation of the inventory.
     public String toString() {
-        String newdata = null;
-           for(char valyou : charCounts.keySet()){
-               String[] storage = new String[1];
-               ArrayList<String> store = new ArrayList<String>();
-               int value = charCounts.get(valyou);
-
-               for(int repeat = 0; repeat<= value - 1; repeat++){
-                   StringBuilder sb = new StringBuilder();
-                   sb.append(valyou);
-                   newdata = sb.toString();
-                   store.add(newdata);
-               }
-           }
-        return newdata;
+        String result = "[";
+        for (char valyou : charCounts.keySet()){
+            int value = charCounts.get(valyou);
+            for(int repeat = 0; repeat < value; repeat++){
+                result += valyou;
+            }
+        }
+        result += "]";
+        return result;
     }
 
     // Constructs and returns a new LetterInventory object that represents the 
     // sum of this letter inventory and the other given LetterInventory.
-    public LetterInventory add(LetterInventory other, String newdata) {
-        other = new LetterInventory(newdata);
+    public LetterInventory add(LetterInventory other) {
         return null;
     }
 
