@@ -72,13 +72,17 @@ public class LetterInventory {
     // Constructs and returns a new LetterInventory object that represents the 
     // sum of this letter inventory and the other given LetterInventory.
     public LetterInventory add(LetterInventory other) {
-        return null;
+        other = new LetterInventory();
+        size = size + size(other);
+        return other;
     }
 
     // Constructs and returns a new LetterInventory object that represents the 
     // result of subtracting the other inventory from this inventory. 
     // If any resulting count would be negative, returns null.
     public LetterInventory subtract(LetterInventory other) {
-        return null;
+        LetterInventory = new LetterInventory(size);
+        size = size - size(other);
+        return LetterInventory;
     }
 }
