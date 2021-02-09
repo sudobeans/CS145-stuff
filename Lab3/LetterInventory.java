@@ -81,9 +81,8 @@ public class LetterInventory {
         LetterInventory sum = new LetterInventory("");
         for(char a : other.toMap().keySet()){
             if (this.charCounts.containsKey(a)) {
-                int newCValue = this.get(a) + 1;
+                int newCValue = this.get(a) + other.get(a);
                 sum.set(a, newCValue);
-                size++;
             }
         }
         return sum;
