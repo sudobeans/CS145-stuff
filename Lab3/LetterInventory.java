@@ -96,14 +96,14 @@ public class LetterInventory {
     public LetterInventory add(LetterInventory other) {
         LetterInventory sum = new LetterInventory("");
         for(char a : other.toMap().keySet()){
-            if (charCounts.containsKey(a)) {
-                int newCValue = charCounts.get(a) + 1;
-                charCounts.put(a, newCValue);
-                size++;
+            if (this.charCounts.containsKey(a)) {
+                int newCValue = this.get(a) + other.get(a);
+                sum.set(a, newCValue);
             }
         }
         return sum;
     }
+
 
     // Constructs and returns a new LetterInventory object that represents the 
     // result of subtracting the other inventory from this inventory. 
