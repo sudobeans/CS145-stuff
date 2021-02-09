@@ -70,7 +70,9 @@ public class LetterInventory {
     }
     
     public Map<Character, Integer> toMap() {
-        return charCounts.clone();
+        TreeMap<Character, Integer> result = new TreeMap<>();
+        result.putAll(charCounts);
+        return result;
     }
 
     // Constructs and returns a new LetterInventory object that represents the 
@@ -85,9 +87,16 @@ public class LetterInventory {
     // result of subtracting the other inventory from this inventory. 
     // If any resulting count would be negative, returns null.
     public LetterInventory subtract(LetterInventory other) {
-        LetterInventory = new LetterInventory(size);
-        size = size - size(other);
-        return LetterInventory;
+        LetterInventory result = this.copy();
+        for (char c : this.toMap().keySet()) {
+            int difference = this.get(c) - other.get(c);
+            // Returns null if the count is negative
+            if (difference < 0) {
+                return null;
+            }
+            result.set(c, difference);
+        }
+        return result;
     }
 
     // Returns a copy of this LetterInventory.
