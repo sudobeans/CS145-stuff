@@ -11,27 +11,26 @@ import java.util.*;
 
 public class LetterInventory {
     // Letters passed into any method may be uppercase or lowercase.
-    private Map<Character, Integer> charCounts;
+    private int[] charCounts;
     private int size;
     // The range of characters to count
     public static final char START = 'a';
     public static final char END = 'z';
+    public static final int NUMBER_OF_LETTERS = END - START + 1;
 
     // Constructs an inventory (a count) of the alphabetic letters in the given string, 
     // ignoring the case of letters and ignoring any non-alphabetic characters.
     public LetterInventory(String data) {
-        charCounts = new TreeMap<>();
+        charCounts = new int[26];
         size = 0;
         data = data.toLowerCase();
         // Initializes charCounts
-        for (char c = START; c <= END; c++) {
-            charCounts.put(c, 0);
-        }
+        Arrays.fill(charCounts, 0);
         // Adds the string to charCounts
         for (char c : data.toCharArray()) { 
-            if (charCounts.containsKey(c)) {
-                int newValueAtC = charCounts.get(c) + 1;
-                charCounts.put(c, newValueAtC);
+            if (letters().contains(c)) {
+                int newValueAtC = charCounts[letterToIndex(c)] + 1;
+                charCounts[letterToIndex(c)] = newValueAtC;
                 size++;
             }
         }
@@ -44,7 +43,7 @@ public class LetterInventory {
             throw new IllegalArgumentException("Not alphabetic: " + letter);
         }
         char letterLower = Character.toLowerCase(letter);
-        return charCounts.get(letterLower);
+        return charCounts[letterToIndex(letterLower)];
     }
 
     // Sets the count for the given letter to the given value. 
@@ -61,7 +60,7 @@ public class LetterInventory {
         size += value;
 
         char letterLower = Character.toLowerCase(letter);
-        charCounts.put(letterLower, value);
+        charCounts[letterToIndex(letterLower)] = value;
     }
 
     // Returns the sum of all of the counts in this inventory.
@@ -77,8 +76,8 @@ public class LetterInventory {
     // Returns a String representation of the inventory.
     public String toString() {
         String result = "[";
-        for (char valyou : charCounts.keySet()){
-            int value = charCounts.get(valyou);
+        for (char valyou : letters()){
+            int value = this.get(valyou);
             for(int repeat = 0; repeat < value; repeat++){
                 result += valyou;
             }
@@ -87,22 +86,13 @@ public class LetterInventory {
         return result;
     }
     
-    // Returns this LetterInventory as a map.
-    public Map<Character, Integer> toMap() {
-        TreeMap<Character, Integer> result = new TreeMap<>();
-        result.putAll(charCounts);
-        return result;
-    }
-
     // Constructs and returns a new LetterInventory object that represents the 
     // sum of this letter inventory and the other given LetterInventory.
     public LetterInventory add(LetterInventory other) {
         LetterInventory sum = new LetterInventory("");
-        for(char a : other.toMap().keySet()){
-            if (this.charCounts.containsKey(a)) {
-                int newCValue = this.get(a) + other.get(a);
-                sum.set(a, newCValue);
-            }
+        for(char a : letters()){
+            int newCValue = this.get(a) + other.get(a);
+            sum.set(a, newCValue);
         }
         return sum;
     }
@@ -113,7 +103,7 @@ public class LetterInventory {
     // If any resulting count would be negative, returns null.
     public LetterInventory subtract(LetterInventory other) {
         LetterInventory result = this.copy();
-        for (char c : this.toMap().keySet()) {
+        for (char c : letters()) {
             int difference = this.get(c) - other.get(c);
             // Returns null if the count is negative
             if (difference < 0) {
@@ -127,9 +117,33 @@ public class LetterInventory {
     // Returns a copy of this LetterInventory.
     public LetterInventory copy() {
         LetterInventory result = new LetterInventory("");
-        for (char c : this.toMap().keySet()) {
+        for (char c : letters()) {
             result.set(c, this.get(c));
         }
         return result;
+    }
+    
+    // Returns an array as a list
+    public static List<Character> asList(char[] arr) {
+        ArrayList<Character> result = new ArrayList<>();
+        for (char c : arr) {
+            result.add(c);
+        }
+        return result;
+    }
+
+    // Returns an array of all the different letters, in order.
+    public static List<Character> letters() {
+        ArrayList<Character> lettersArray = new ArrayList<>(26);
+        for (char c = START; c <= END; c++) {
+            lettersArray.add(c);
+        }
+        return lettersArray;
+    }
+
+    // Takes a letter and returns its index in the array (ex. a is 0, b is 1, c is 2, etc.)
+    private static int letterToIndex(char letter) {
+        char letterLower = Character.toLowerCase(letter);
+        return letters().indexOf(letterLower);
     }
 }
