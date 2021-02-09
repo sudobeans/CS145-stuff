@@ -70,9 +70,8 @@ public class LetterInventory {
     }
     
     public Map<Character, Integer> toMap() {
-        return charCounts;
+        return charCounts.clone();
     }
-
 
     // Constructs and returns a new LetterInventory object that represents the 
     // sum of this letter inventory and the other given LetterInventory.
@@ -89,5 +88,14 @@ public class LetterInventory {
         LetterInventory = new LetterInventory(size);
         size = size - size(other);
         return LetterInventory;
+    }
+
+    // Returns a copy of this LetterInventory.
+    public LetterInventory copy() {
+        LetterInventory result = new LetterInventory("");
+        for (char c : this.toMap().keySet()) {
+            result.set(c, this.get(c));
+        }
+        return result;
     }
 }
