@@ -38,12 +38,28 @@ public class LetterInventory {
     // Returns a count of how many of this letter are in the inventory. 
     // If a non-alphabetic character is passed, throws an IllegalArgumentException.
     public int get(char letter) {
-        return charCounts.get(letter);
+        if (!Character.isAlphabetic(letter)) {
+            throw new IllegalArgumentException("Not alphabetic: " + letter);
+        }
+        char letterLower = Character.toLowerCase(letter);
+        return charCounts.get(letterLower);
     }
 
     // Sets the count for the given letter to the given value. 
+    // If a non-alphabetic character is passed or if value is negative, 
+    // throws an IllegalArgumentException.
     public void set(char letter, int value) {
-        charCounts.put(letter, value);
+        if (!Character.isAlphabetic(letter)) {
+            throw new IllegalArgumentException("Not alphabetic: " + letter);
+        } else if (value < 0) {
+            throw new IllegalArgumentException("Value is negative: " + value);
+        }
+        // changes size to reflect the change in value
+        size -= this.get(letter);
+        size += value;
+
+        char letterLower = Character.toLowerCase(letter);
+        charCounts.put(letterLower, value);
     }
 
     // Returns the sum of all of the counts in this inventory.
