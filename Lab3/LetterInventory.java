@@ -68,6 +68,11 @@ public class LetterInventory {
         result += "]";
         return result;
     }
+    
+    public Map<Character, Integer> toMap() {
+        return charCounts;
+    }
+
 
     // Constructs and returns a new LetterInventory object that represents the 
     // sum of this letter inventory and the other given LetterInventory.
