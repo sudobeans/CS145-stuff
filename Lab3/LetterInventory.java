@@ -4,6 +4,8 @@
 // Schuyler Duryee
 
 // Lab 3: Letter Inventory
+// LetterInventory defines a class that is a bit like a Map. It keeps an inventory of the letters
+// of the alphabet.
 
 import java.util.*;
 
@@ -85,6 +87,7 @@ public class LetterInventory {
         return result;
     }
     
+    // Returns this LetterInventory as a map.
     public Map<Character, Integer> toMap() {
         TreeMap<Character, Integer> result = new TreeMap<>();
         result.putAll(charCounts);
