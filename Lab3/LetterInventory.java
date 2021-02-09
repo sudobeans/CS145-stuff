@@ -78,9 +78,15 @@ public class LetterInventory {
     // Constructs and returns a new LetterInventory object that represents the 
     // sum of this letter inventory and the other given LetterInventory.
     public LetterInventory add(LetterInventory other) {
-        other = new LetterInventory();
-        size = size + size(other);
-        return other;
+        LetterInventory sum = new LetterInventory("");
+        for(char a : other.toMap().keySet()){
+            if (charCounts.containsKey(a)) {
+                int newCValue = charCounts.get(a) + 1;
+                charCounts.put(a, newCValue);
+                size++;
+            }
+        }
+        return sum;
     }
 
     // Constructs and returns a new LetterInventory object that represents the 
