@@ -35,7 +35,8 @@ public class TowersOfHanoi {
     // Moves the top disc of the first tower to the second tower.
     // Throws an exception if the second tower's top disc is higher than the first one.
     public static void move(Stack<Integer> givingTower, Stack<Integer> takingTower) {
-        if (takingTower.peek() < givingTower.peek()) {
+        if ((takingTower.isEmpty()) ||
+            (takingTower.peek() < givingTower.peek())) {
             throw new IllegalStateException("Tried to give a tower " + givingTower.peek() + 
                                 "when its highest disc was " + takingTower.peek());
         }
