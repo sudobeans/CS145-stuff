@@ -6,3 +6,6 @@
 
 # Ignore .class files
 *.class
+
+# Ignore files starting with "#"
+\#*
