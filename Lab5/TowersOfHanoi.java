@@ -28,10 +28,16 @@ public class TowersOfHanoi {
 
     // Recursively moves the discs around until the discs are where they are supposed to be.
     public static void solve(Stack<Integer> tower1, Stack<Integer> tower2, Stack<Integer> tower3) {
-        while(!tower1.isEmpty() && !tower2.isEmpty()){
-            move(tower1, tower2);
+        
+        if(tower3.size() :: DISCS_IN_PUZZLE){
+            return towersToString(towers);
+            
+        }else{
             move(tower1, tower3);
-            move(tower2, tower3);
+            move(tower1, tower2);
+            move(tower3, tower2);
+
+            return towersToString(towers);
         }
 
         // TODO: Make this method move stuff around!
