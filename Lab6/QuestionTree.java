@@ -11,7 +11,9 @@ import java.io.*;
 public class QuestionTree {
 
     // Constructs a QuestionTree using the given UserInterface.
+    // Throws an IllegalArgumentException if the UI is null.
     public QuestionTree(UserInterface ui) {
+        throwIfNull(ui, "UI is null");
         // Write some code here!
     }
 
@@ -21,12 +23,16 @@ public class QuestionTree {
     }
 
     // Stores the tree's current state to an output file represented by the given PrintStream.
+    // Throws an IllegalArgumentException if the output PrintStream is null.
     public void save(PrintStream output) {
+        throwIfNull(output, "output PrintStream is null");
         // Write some code here!
     }
 
     // Replaces the current tree with a new tree, based off the text in the scanner.
+    // Throws an IllegalArgumentException if the input Scanner is null.
     public void load(Scanner input) {
+        throwIfNull(input, "input scanner is null");
         // Write some code here!
     }
 
@@ -40,5 +46,12 @@ public class QuestionTree {
     public int gamesWon() {
         // Write some code here!
         return 0;
+    }
+
+    // Throws an IllegalArgumentException with the given message if the given Object is null.
+    public void throwIfNull(Object o, String message) {
+        if (o == null) {
+            throw new IllegalArgumentException(message);
+        }
     }
 }
