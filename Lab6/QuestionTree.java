@@ -13,6 +13,7 @@ public class QuestionTree {
     private QuestionNode treeRoot;
     private UserInterface ui;
     private int totalGames = 0; 
+    private int gamesWon = 0; 
 
     // Constructs a QuestionTree using the given UserInterface.
     // Throws an IllegalArgumentException if the UI is null.
@@ -35,6 +36,7 @@ public class QuestionTree {
         if (isAnswerNode(current)) {
             if (bigYup("Is this thing possibly a " + current.userInput +"?")) {
                 ui.println("Haha! I am unstoppable! Skynet forever, baybee!");
+                gamesWon++;
                 totalGames++;
             } else {
                 ui.println("Well, dang. I thought I had you there.");
@@ -58,7 +60,7 @@ public class QuestionTree {
             } else {
                 current.noAnswer = play(current.noAnswer);
             }
-            totalGames++; 
+            totalGames++;  
         }
         return current;
     }
@@ -116,7 +118,7 @@ public class QuestionTree {
     // Returns the number of games the user has won.
     public int gamesWon() {
         // Write some code here!
-        return 0;
+        return gamesWon;
     }
 
     // Throws an IllegalArgumentException with the given message if the given Object is null.
