@@ -71,11 +71,9 @@ public class QuestionTree {
     // Saves questions and answers to a file.
     private void saveHelper(QuestionNode treeRoot, PrintStream output) {
         if (isAnswerNode(treeRoot)) {
-            output.println("A:");
-            output.println(treeRoot.userInput);
+            output.println("A:" + treeRoot.userInput);
         } else {
-            output.println("Q:");
-            output.println(treeRoot.userInput);
+            output.println("Q:" + treeRoot.userInput);
             saveHelper(treeRoot.yesAnswer, output);
             saveHelper(treeRoot.noAnswer, output);
         }
@@ -91,10 +89,14 @@ public class QuestionTree {
     }
     // Helper method for load.
     private QuestionNode loadHelper(Scanner input) {
-        String type = input.nextLine();
-        String data = input.nextLine();
+        String[] line = input.nextLine().split(":");
+        // The type of node to make (question or answer)
+        String type = line[0];
+        // The text to have in the node
+        String data = line[1];
         QuestionNode root = new QuestionNode(data);
-        if (type.contains("Q:")) {
+        if (type.contains("Q")) {
+            // If it is a QuestionNode, adds yes and no answer nodes
             root.yesAnswer = loadHelper(input);
             root.noAnswer = loadHelper(input);
         }
