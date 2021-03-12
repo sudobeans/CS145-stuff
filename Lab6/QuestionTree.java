@@ -104,9 +104,13 @@ public class QuestionTree {
     }
 
     // Returns the total number of games the user has played.
-    public int totalGames() {
-        // Write some code here!
-        return 0;
+    public int totalGames(QuestionNode current) {
+        int gamesPlayed = 0; 
+        {
+            gamesPlayed++; 
+        } 
+
+        return gamesPlayed;
     }
 
     // Returns the number of games the user has won.
