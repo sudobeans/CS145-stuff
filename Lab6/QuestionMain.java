@@ -65,6 +65,7 @@ public class QuestionMain implements UserInterface {
     private void run() {
         println("Welcome to the game of 20 Questions!");
         load();
+        
         // "Think of an item, and I will guess it in N tries."
         println("\n" + BANNER_MESSAGE);
             
