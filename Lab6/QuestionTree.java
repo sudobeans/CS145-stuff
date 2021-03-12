@@ -26,6 +26,10 @@ public class QuestionTree {
         treeRoot = play(treeRoot);
     }
 
+    // Helper method for play. Launches game based on current
+    // userInput (either a load or starting from scratch).
+    // Stores questions/answers as it goes, to become smarter.
+    // Uses bigYup bool to react to client's input.
     private QuestionNode play(QuestionNode current) {
         if (isAnswerNode(current)) {
             if (bigYup("Is this thing possibly a " + current.userInput +"?")) {
@@ -63,6 +67,8 @@ public class QuestionTree {
         saveHelper(treeRoot, output);
     }
     
+    // Helper method for save, allows for the treeRoot Question Node to be called.
+    // Saves questions and answers to a file.
     private void saveHelper(QuestionNode treeRoot, PrintStream output) {
         if (isAnswerNode(treeRoot)) {
             output.println("A:");
@@ -83,7 +89,7 @@ public class QuestionTree {
             treeRoot = loadHelper(input);
         }
     }
-
+    // Helper method for load.
     private QuestionNode loadHelper(Scanner input) {
         String type = input.nextLine();
         String data = input.nextLine();
@@ -114,10 +120,13 @@ public class QuestionTree {
         }
     }
 
+    // Tests to see if the QuestionNode is a leaf (answer) or a branch (question).
     private boolean isAnswerNode(QuestionNode node) {
         return (node.yesAnswer == null && node.noAnswer == null);
     }
 
+    // Bool method to deliver a true on client 'y' answers. Could be
+    // lengthened to take full words, but I like the brevity for now.
     public boolean bigYup(String question) {
         ui.print(question + " (y/n)? ");
         return ui.nextBoolean();
