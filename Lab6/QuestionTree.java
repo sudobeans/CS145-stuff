@@ -26,6 +26,8 @@ public class QuestionTree {
     // Plays one complete guessing game with the user.
     public void play() {
         treeRoot = play(treeRoot);
+        totalGames++;
+        }
     }
 
     // Helper method for play. Launches game based on current
@@ -37,7 +39,6 @@ public class QuestionTree {
             if (bigYup("Is this thing possibly a " + current.userInput +"?")) {
                 ui.println("Haha! I am unstoppable! Skynet forever, baybee!");
                 gamesWon++;
-                totalGames++;
             } else {
                 ui.println("Well, dang. I thought I had you there.");
                 ui.print("What was your object? --->>> ");
@@ -52,15 +53,13 @@ public class QuestionTree {
                 } else {
                     current = new QuestionNode(newQuestion, current, thisAnswer);
                 }
-
             }
         } else {
             if (bigYup(current.userInput)) {
                 current.yesAnswer = play(current.yesAnswer);
             } else {
                 current.noAnswer = play(current.noAnswer);
-            }
-            totalGames++;  
+            } 
         }
         return current;
     }
@@ -92,6 +91,7 @@ public class QuestionTree {
             treeRoot = loadHelper(input);
         }
     }
+
     // Helper method for load.
     private QuestionNode loadHelper(Scanner input) {
         String[] line = input.nextLine().split(":");
@@ -110,14 +110,11 @@ public class QuestionTree {
 
     // Returns the total number of games the user has played.
     public int totalGames() {
-
-
         return totalGames;
     }
 
-    // Returns the number of games the user has won.
-    public int gamesWon() {
-        // Write some code here!
+    // Returns the number of games the computer has won.
+    public int gamesWon() {  
         return gamesWon;
     }
 
