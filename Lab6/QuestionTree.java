@@ -26,8 +26,6 @@ public class QuestionTree {
     // Plays one complete guessing game with the user.
     public void play() {
         treeRoot = play(treeRoot);
-        totalGames++;
-        }
     }
 
     // Helper method for play. Launches game based on current
@@ -35,6 +33,7 @@ public class QuestionTree {
     // Stores questions/answers as it goes, to become smarter.
     // Uses bigYup bool to react to client's input.
     private QuestionNode play(QuestionNode current) {
+        totalGames++;
         if (isAnswerNode(current)) {
             if (bigYup("Is this thing possibly a " + current.userInput +"?")) {
                 ui.println("Haha! I am unstoppable! Skynet forever, baybee!");
