@@ -9,3 +9,6 @@
 
 # Ignore files starting with "#"
 \#*
+
+# Ignore files in the ".idea" directory
+*.idea*
