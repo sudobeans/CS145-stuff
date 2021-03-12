@@ -1,0 +1,14 @@
+Q:
+is it an animal?
+Q:
+does it have 9 lives?
+A:
+cat
+A:
+dog
+Q:
+does it have pages?
+A:
+book
+A:
+computer
