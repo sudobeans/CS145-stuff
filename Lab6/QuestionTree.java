@@ -108,7 +108,7 @@ public class QuestionTree {
     }
 
     // Throws an IllegalArgumentException with the given message if the given Object is null.
-    private void throwIfNull(Object o, String message) {
+    private static void throwIfNull(Object o, String message) {
         if (o == null) {
             throw new IllegalArgumentException(message);
         }
