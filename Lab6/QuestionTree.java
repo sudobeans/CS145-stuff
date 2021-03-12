@@ -12,6 +12,7 @@ public class QuestionTree {
 
     private QuestionNode treeRoot;
     private UserInterface ui;
+    private int totalGames = 0; 
 
     // Constructs a QuestionTree using the given UserInterface.
     // Throws an IllegalArgumentException if the UI is null.
@@ -34,6 +35,7 @@ public class QuestionTree {
         if (isAnswerNode(current)) {
             if (bigYup("Is this thing possibly a " + current.userInput +"?")) {
                 ui.println("Haha! I am unstoppable! Skynet forever, baybee!");
+                totalGames++;
             } else {
                 ui.println("Well, dang. I thought I had you there.");
                 ui.print("What was your object? --->>> ");
@@ -56,6 +58,7 @@ public class QuestionTree {
             } else {
                 current.noAnswer = play(current.noAnswer);
             }
+            totalGames++; 
         }
         return current;
     }
@@ -104,13 +107,10 @@ public class QuestionTree {
     }
 
     // Returns the total number of games the user has played.
-    public int totalGames(QuestionNode current) {
-        int gamesPlayed = 0; 
-        {
-            gamesPlayed++; 
-        } 
+    public int totalGames() {
 
-        return gamesPlayed;
+
+        return totalGames;
     }
 
     // Returns the number of games the user has won.
@@ -136,5 +136,8 @@ public class QuestionTree {
     public boolean bigYup(String question) {
         ui.print(question + " (y/n)? ");
         return ui.nextBoolean();
+    }
+
+    public QuestionTree() {
     }
 }
