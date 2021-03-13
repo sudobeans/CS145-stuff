@@ -1,0 +1,17 @@
+Q:Is it an inanimate object?
+Q:Is it round?
+A:basketball
+Q:Is it 3 dimensional?
+A:rubix cube
+A:square
+Q:Does it have wheels?
+A:bicycle
+Q:Can it grow outdoors? 
+A:fern
+A:house
+Q:Is it electronic? 
+A:Ipod
+A:brick
+Q:Is it capable of learning? 
+A:Computer
+A:Computer Programmers
