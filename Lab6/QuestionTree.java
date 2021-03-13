@@ -33,8 +33,8 @@ public class QuestionTree {
     // Stores questions/answers as it goes, to become smarter.
     // Uses bigYup bool to react to client's input.
     private QuestionNode play(QuestionNode current) {
-        totalGames++;
         if (isAnswerNode(current)) {
+            totalGames++;
             if (bigYup("Is this thing possibly a " + current.userInput +"?")) {
                 ui.println("Haha! I am unstoppable! Skynet forever, baybee!");
                 gamesWon++;
